@@ -4,7 +4,7 @@ const loadProduction = () => {
    try {
       const dataBuffer = fs.readFileSync(`data/production.json`);
       const dataJson = dataBuffer.toString();
-      console.log(`it works`);
+
       return JSON.parse(dataJson);
    } catch (error) {
       return [];

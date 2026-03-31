@@ -2,7 +2,6 @@ import { loadProduction, saveProductionRun } from "../utils/fileHandler.js";
 
 export const createProductionRun = (req, res) => {
    const { operator, wireType, coilsProduced, palletId } = req.body;
-   const production = loadProduction();
 
    // business calculations
    const boxesUsed = coilsProduced / 6;
@@ -26,7 +25,9 @@ export const createProductionRun = (req, res) => {
       zipTiesUsed,
       palletsCreated,
    };
-   saveProductionRun(productionRun);
+   let production = loadProduction();
+   production.push(productionRun);
+   saveProductionRun(production);
 
    res.status(201).json(productionRun);
 };

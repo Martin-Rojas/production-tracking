@@ -31,3 +31,8 @@ export const createProductionRun = (req, res) => {
 
    res.status(201).json(productionRun);
 };
+
+export const getProduction = (req, res) => {
+   let production = loadProduction();
+   res.status(201).json(production);
+};

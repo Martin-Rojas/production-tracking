@@ -10,6 +10,7 @@ app.use(express.json());
 // routes
 app.use("/production", productionRoutes);
 app.use("/production", productionRoutes);
+app.use("/production/:id", productionRoutes);
 
 // start server
 app.listen(PORT, () => {

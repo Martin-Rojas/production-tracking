@@ -36,3 +36,18 @@ export const getProduction = (req, res) => {
    let production = loadProduction();
    res.status(201).json(production);
 };
+
+export const getProductionRun = (req, res) => {
+   let production = loadProduction();
+   const productionRunId = req.params.id;
+
+   const requestProductionRun = production.filter(
+      (productionRun) => productionRunId == productionRun.id,
+   );
+
+   if (requestProductionRun.length !== 0) {
+      res.status(200).json(requestProductionRun);
+   } else {
+      res.status(404).json({ error: `Production Run not found` });
+   }
+};

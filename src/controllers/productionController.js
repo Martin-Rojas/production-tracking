@@ -42,7 +42,7 @@ export const getProductionRun = (req, res) => {
    const productionRunId = req.params.id;
 
    const requestProductionRun = production.filter(
-      (productionRun) => productionRunId == productionRun.id,
+      (productionRun) => productionRunId === productionRun.id,
    );
 
    if (requestProductionRun.length !== 0) {
@@ -50,4 +50,29 @@ export const getProductionRun = (req, res) => {
    } else {
       res.status(404).json({ error: `Production Run not found` });
    }
+};
+
+export const deleteProductionRun = (req, res) => {
+   /** 1. load all production runs */
+   const production = loadProduction();
+
+   // 2. find the item to delete
+   const productionRunId = req.params.id;
+
+   const productionRunFound = production.find(
+      (productionRun) => productionRun.id === productionRunId,
+   );
+
+   // 3. if not found → 404
+   if (!productionRunFound) {
+      return res.status(404).json({ error: "Production Run not found" });
+   }
+   // 4. remove it
+   const updatedProduction = production.filter(
+      (productionRun) => productionRun.id !== productionRunFound.id,
+   );
+   // 5. save updated array
+   saveProductionRun(updatedProduction);
+   // 6. return deleted object */
+   return res.status(200).json(productionRunFound);
 };

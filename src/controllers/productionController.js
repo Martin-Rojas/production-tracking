@@ -1,35 +1,68 @@
 import { loadProduction, saveProductionRun } from "../utils/fileHandler.js";
 
 export const createProductionRun = (req, res) => {
-   const { operator, wireType, coilsProduced, palletId } = req.body;
+   try {
+      // Validate Request Exists
+      if (!req.body || Object.keys(req.body).length === 0) {
+         return res.status(400).json({ error: "Request body is required" });
+      }
 
-   // business calculations
-   const boxesUsed = coilsProduced / 6;
-   const zipTiesUsed = coilsProduced * 4;
-   const palletsCreated = boxesUsed / 63;
+      // Validate Request Exists
+      if (
+         req.body.operator !== "" &&
+         req.body.wireType !== "" &&
+         !req.body.coilsProduced &&
+         req.body.palletId !== ""
+      ) {
+         return res.status(400).json({ error: "All fields must be required" });
+      }
 
-   // generate  id
-   const id = `run_${Date.now()}`;
+      // Validate Wire Type
+      const validWireTypes = ["316/045", "302/038", "302/045", "430/045"];
+      if (!validWireTypes.includes(req.body.wireType)) {
+         return res.status(400).json({ error: "Invalid wire type" });
+      }
 
-   // create date
-   const date = new Date().toISOString().split("T")[0];
+      // Validate coilsProduced
+      const coils = Number(req.body.coilsProduced);
+      if (!Number.isFinite(coils) || coils < 0) {
+         return res.status(400).json({
+            error: "Invalid coil count",
+         });
+      }
 
-   const productionRun = {
-      id,
-      palletId,
-      date,
-      operator,
-      wireType,
-      coilsProduced,
-      boxesUsed,
-      zipTiesUsed,
-      palletsCreated,
-   };
-   let production = loadProduction();
-   production.push(productionRun);
-   saveProductionRun(production);
+      const { operator, wireType, coilsProduced, palletId } = req.body;
 
-   res.status(201).json(productionRun);
+      // business calculations
+      const boxesUsed = coilsProduced / 6;
+      const zipTiesUsed = coilsProduced * 4;
+      const palletsCreated = boxesUsed / 63;
+
+      // generate  id
+      const id = `run_${Date.now()}`;
+
+      // create date
+      const date = new Date().toISOString().split("T")[0];
+
+      const productionRun = {
+         id,
+         palletId,
+         date,
+         operator,
+         wireType,
+         coilsProduced,
+         boxesUsed,
+         zipTiesUsed,
+         palletsCreated,
+      };
+      let production = loadProduction();
+      production.push(productionRun);
+      saveProductionRun(production);
+
+      res.status(201).json(productionRun);
+   } catch (error) {
+      return res.status(500).json({ error: "Server error" });
+   }
 };
 
 export const getProduction = (req, res) => {

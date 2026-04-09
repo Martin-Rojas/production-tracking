@@ -1,21 +1,13 @@
 import { loadProduction, saveProductionRun } from "../utils/fileHandler.js";
-import {
-   validateRequest,
-   fieldsRequired,
-   validateWireType,
-   validateCoilsProduced,
-} from "../utils/validateProduction.js";
+import { validateData } from "../utils/validateProduction.js";
 
 export const createProductionRun = (req, res) => {
    try {
-      validateRequest(req, res);
+      const error = validateData(req.body);
 
-      fieldsRequired(req, res);
-
-      validateWireType(req, res);
-
-      validateCoilsProduced(req, res);
-
+      if (error) {
+         return res.status(400).json({ error });
+      }
       const { operator, wireType, coilsProduced, palletId } = req.body;
 
       // business calculations

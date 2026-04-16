@@ -8,6 +8,7 @@ export const createProductionRun = (req, res) => {
       if (error) {
          return res.status(400).json({ error });
       }
+
       const { operator, wireType, coilsProduced, palletId } = req.body;
 
       // business calculations
@@ -94,6 +95,61 @@ export const deleteProductionRun = (req, res) => {
       saveProductionRun(updatedProduction);
       // 6. return deleted object */
       return res.status(200).json(productionRunFound);
+   } catch {
+      return res.status(500).json({ error: "Server error" });
+   }
+};
+
+export const updateProductionRun = (req, res) => {
+   try {
+      // Load production
+      const production = loadProduction();
+
+      const productionRunId = req.params.id;
+
+      // Find the production run by id match
+      const productionRunFound = production.find(
+         (productionRun) => productionRun.id === productionRunId,
+      );
+      if (!productionRunFound) {
+         return res.status(404).json({ error: "Production Run not found" });
+      }
+
+      // Validate new productionRun data
+      const error = validateData(req.body);
+
+      if (error) {
+         return res.status(400).json({ error });
+      }
+
+      const {
+         operator: newOperator,
+         wireType: newWireType,
+         coilsProduced: newCoilsProduced,
+         palletId: newPalletID,
+      } = req.body;
+
+      // Update Object
+      productionRunFound.operator = newOperator;
+      productionRunFound.wireType = newWireType;
+      productionRunFound.coilsProduced = newCoilsProduced;
+      productionRunFound.palletId = newPalletID;
+
+      // Recalculate business values  calculations
+      const boxesUsed = newCoilsProduced / 6;
+      const zipTiesUsed = newCoilsProduced * 4;
+      const palletsCreated = boxesUsed / 63;
+
+      productionRunFound.boxesUsed = boxesUsed;
+      productionRunFound.zipTiesUsed = zipTiesUsed;
+      productionRunFound.palletsCreated = palletsCreated;
+
+      // Save Updated Array
+      const indexOfProduction = production.indexOf(productionRunFound);
+      production[indexOfProduction] = productionRunFound;
+      saveProductionRun(production);
+
+      res.status(200).json(productionRunFound);
    } catch {
       return res.status(500).json({ error: "Server error" });
    }

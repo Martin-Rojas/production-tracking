@@ -39,7 +39,7 @@ export const createProductionRun = (req, res) => {
       production.push(productionRun);
       saveProductionRun(production);
 
-      res.status(200).json(productionRun);
+      res.status(201).json({ data: productionRun });
    } catch (error) {
       return res.status(500).json({ error: "Server error" });
    }
@@ -48,7 +48,7 @@ export const createProductionRun = (req, res) => {
 export const getProduction = (req, res) => {
    try {
       let production = loadProduction();
-      res.status(200).json(production);
+      res.status(200).json({ data: production });
    } catch {
       return res.status(500).json({ error: "Server error" });
    }
@@ -63,8 +63,8 @@ export const getProductionRun = (req, res) => {
          (productionRun) => productionRunId === productionRun.id,
       );
 
-      if (requestProductionRun.length !== 0) {
-         res.status(200).json(requestProductionRun);
+      if (requestProductionRun) {
+         res.status(200).json({ data: requestProductionRun });
       } else {
          res.status(404).json({ error: "Production Run not found" });
       }
@@ -96,7 +96,7 @@ export const deleteProductionRun = (req, res) => {
       // 5. save updated array
       saveProductionRun(updatedProduction);
       // 6. return deleted object */
-      return res.status(200).json(productionRunFound);
+      return res.status(200).json({ data: productionRunFound });
    } catch {
       return res.status(500).json({ error: "Server error" });
    }
@@ -149,7 +149,7 @@ export const updateProductionRun = (req, res) => {
       production[indexOfProduction] = productionRunFound;
       saveProductionRun(production);
 
-      res.status(200).json(productionRunFound);
+      res.status(200).json({ data: productionRunFound });
    } catch {
       return res.status(500).json({ error: "Server error" });
    }

@@ -1,5 +1,6 @@
 import { loadProduction, saveProductionRun } from "../utils/fileHandler.js";
 import { validateData } from "../utils/validateProduction.js";
+import { calculateProduction } from "../utils/calculateProduction.js";
 
 export const createProductionRun = (req, res) => {
    try {
@@ -12,9 +13,8 @@ export const createProductionRun = (req, res) => {
       const { operator, wireType, coilsProduced, palletId } = req.body;
 
       // business calculations
-      const boxesUsed = coilsProduced / 6;
-      const zipTiesUsed = coilsProduced * 4;
-      const palletsCreated = boxesUsed / 63;
+      const { boxesUsed, zipTiesUsed, palletsCreated } =
+         calculateProduction(coilsProduced);
 
       // generate  id
       const id = `run_${Date.now()}`;
@@ -33,6 +33,8 @@ export const createProductionRun = (req, res) => {
          zipTiesUsed,
          palletsCreated,
       };
+
+      // Push and save productionRun
       let production = loadProduction();
       production.push(productionRun);
       saveProductionRun(production);
@@ -104,7 +106,6 @@ export const updateProductionRun = (req, res) => {
    try {
       // Load production
       const production = loadProduction();
-
       const productionRunId = req.params.id;
 
       // Find the production run by id match
@@ -136,9 +137,8 @@ export const updateProductionRun = (req, res) => {
       productionRunFound.palletId = newPalletID;
 
       // Recalculate business values  calculations
-      const boxesUsed = newCoilsProduced / 6;
-      const zipTiesUsed = newCoilsProduced * 4;
-      const palletsCreated = boxesUsed / 63;
+      const { boxesUsed, zipTiesUsed, palletsCreated } =
+         calculateProduction(newCoilsProduced);
 
       productionRunFound.boxesUsed = boxesUsed;
       productionRunFound.zipTiesUsed = zipTiesUsed;

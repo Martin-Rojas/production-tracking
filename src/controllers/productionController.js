@@ -59,7 +59,7 @@ export const getProductionRun = (req, res) => {
       let production = loadProduction();
       const productionRunId = req.params.id;
 
-      const requestProductionRun = production.filter(
+      const requestProductionRun = production.find(
          (productionRun) => productionRunId === productionRun.id,
       );
 

@@ -59,14 +59,16 @@ export const getProductionRun = (req, res) => {
       const production = loadProduction();
       const productionRunId = req.params.id;
 
-      const requestProductionRun = production.find(
+      const productionRun = production.find(
          (productionRun) => productionRunId === productionRun.id,
       );
 
-      if (requestProductionRun) {
-         res.status(200).json({ data: requestProductionRun });
+      if (productionRun) {
+         res.status(200).json({ data: productionRun });
       } else {
-         res.status(404).json({ error: "Production Run not found" });
+         res.status(404).json({
+            error: `Production run with id ${productionRunId} not found`,
+         });
       }
    } catch {
       return res.status(500).json({ error: "Server error" });
@@ -87,7 +89,9 @@ export const deleteProductionRun = (req, res) => {
 
       // 3. if not found → 404
       if (!productionRunFound) {
-         return res.status(404).json({ error: "Production Run not found" });
+         return res.status(404).json({
+            error: `Production run with id ${productionRunId} not found`,
+         });
       }
       // 4. remove it
       const updatedProduction = production.filter(
@@ -113,7 +117,9 @@ export const updateProductionRun = (req, res) => {
          (productionRun) => productionRun.id === productionRunId,
       );
       if (!productionRunFound) {
-         return res.status(404).json({ error: "Production Run not found" });
+         return res.status(404).json({
+            error: `Production run with id ${productionRunId} not found`,
+         });
       }
 
       // Validate new productionRun data
@@ -145,8 +151,6 @@ export const updateProductionRun = (req, res) => {
       productionRunFound.palletsCreated = palletsCreated;
 
       // Save Updated Array
-      const indexOfProduction = production.indexOf(productionRunFound);
-      production[indexOfProduction] = productionRunFound;
       saveProductionRun(production);
 
       res.status(200).json({ data: productionRunFound });

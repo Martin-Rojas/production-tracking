@@ -1,1 +1,212 @@
-[{"id":"run_1774919675339","palletId":"P1008","date":"2026-03-31","operator":"Alice","wireType":"316/045","coilsProduced":570,"boxesUsed":95,"zipTiesUsed":2280,"palletsCreated":1.507936507936508},{"id":"run_1774920548917","palletId":"P1010","date":"2026-03-31","operator":"Brandon","wireType":"316/045","coilsProduced":590,"boxesUsed":98.33333333333333,"zipTiesUsed":2360,"palletsCreated":1.5608465608465607},{"id":"run_1775090365315","palletId":"P1014","date":"2026-04-02","operator":"Brandon","wireType":"302/045","coilsProduced":485,"boxesUsed":80.83333333333333,"zipTiesUsed":1940,"palletsCreated":1.283068783068783},{"id":"run_1775090390533","palletId":"P1301","date":"2026-04-02","operator":"Martin Rojas","wireType":"302/038","coilsProduced":756,"boxesUsed":126,"zipTiesUsed":3024,"palletsCreated":2},{"id":"run_1775090410198","palletId":"P1010","date":"2026-04-02","operator":"Martin","wireType":"302/045","coilsProduced":385,"boxesUsed":64.16666666666667,"zipTiesUsed":1540,"palletsCreated":1.0185185185185186},{"id":"run_1775178682043","palletId":"P1045","date":"2026-04-03","operator":"Martin","wireType":"302/045","coilsProduced":375,"boxesUsed":62.5,"zipTiesUsed":1500,"palletsCreated":0.9920634920634921},{"id":"run_1775178715541","palletId":"P1045","date":"2026-04-03","operator":"Martin","wireType":"302/045","coilsProduced":375,"boxesUsed":62.5,"zipTiesUsed":1500,"palletsCreated":0.9920634920634921},{"id":"run_1775178751333","date":"2026-04-03","boxesUsed":null,"zipTiesUsed":null,"palletsCreated":null},{"id":"run_1775178963823","date":"2026-04-03","boxesUsed":null,"zipTiesUsed":null,"palletsCreated":null},{"id":"run_1775182457045","palletId":"P1035","date":"2026-04-03","operator":"Martin","wireType":"302/045","coilsProduced":-456,"boxesUsed":-76,"zipTiesUsed":-1824,"palletsCreated":-1.2063492063492063},{"id":"run_1775182811847","palletId":"P1035","date":"2026-04-03","operator":"Martin","wireType":"302/045","coilsProduced":"456","boxesUsed":76,"zipTiesUsed":1824,"palletsCreated":1.2063492063492063},{"id":"run_1775183000679","palletId":"P1035","date":"2026-04-03","operator":"Martin","wireType":"302/045","coilsProduced":"12","boxesUsed":2,"zipTiesUsed":48,"palletsCreated":0.031746031746031744},{"id":"run_1775521677795","palletId":"P1095","date":"2026-04-07","operator":"Martin","wireType":"430/045","coilsProduced":620,"boxesUsed":103.33333333333333,"zipTiesUsed":2480,"palletsCreated":1.6402116402116402},{"id":"run_1775522321223","palletId":"P1295","date":"2026-04-07","operator":"Martin","wireType":"430/040","coilsProduced":620,"boxesUsed":103.33333333333333,"zipTiesUsed":2480,"palletsCreated":1.6402116402116402},{"id":"run_1775522623349","palletId":"P1295","date":"2026-04-07","operator":"Martin","wireType":"430/045","coilsProduced":-12,"boxesUsed":-2,"zipTiesUsed":-48,"palletsCreated":-0.031746031746031744},{"id":"run_1775522657817","palletId":"P1295","date":"2026-04-07","operator":"Martin","wireType":"430/045","coilsProduced":"qwe","boxesUsed":null,"zipTiesUsed":null,"palletsCreated":null},{"id":"run_1775604335955","palletId":"P1295","date":"2026-04-07","operator":"Martin","wireType":"","boxesUsed":null,"zipTiesUsed":null,"palletsCreated":null},{"id":"run_1775604362087","palletId":"P1295","date":"2026-04-07","operator":"Martin","wireType":"","boxesUsed":null,"zipTiesUsed":null,"palletsCreated":null},{"id":"run_1775698164676","palletId":"P1295","date":"2026-04-09","operator":"Martin","wireType":"302/038","coilsProduced":378,"boxesUsed":63,"zipTiesUsed":1512,"palletsCreated":1},{"id":"run_1776734992063","palletId":"P2001","date":"2026-04-21","operator":"Martin Rojas","wireType":"302/038","coilsProduced":756,"boxesUsed":126,"zipTiesUsed":3024,"palletsCreated":2}]
+[
+  {
+    "id": "run_1774919675339",
+    "palletId": "P1008",
+    "date": "2026-03-31",
+    "operator": "Alice",
+    "wireType": "316/045",
+    "coilsProduced": 600,
+    "boxesUsed": 100,
+    "zipTiesUsed": 2400,
+    "palletsCreated": 1.5873015873015872
+  },
+  {
+    "id": "run_1774920548917",
+    "palletId": "P1010",
+    "date": "2026-03-31",
+    "operator": "Brandon",
+    "wireType": "316/045",
+    "coilsProduced": 590,
+    "boxesUsed": 98.33333333333333,
+    "zipTiesUsed": 2360,
+    "palletsCreated": 1.5608465608465607
+  },
+  {
+    "id": "run_1775090365315",
+    "palletId": "P1014",
+    "date": "2026-04-02",
+    "operator": "Brandon",
+    "wireType": "302/045",
+    "coilsProduced": 485,
+    "boxesUsed": 80.83333333333333,
+    "zipTiesUsed": 1940,
+    "palletsCreated": 1.283068783068783
+  },
+  {
+    "id": "run_1775090390533",
+    "palletId": "P1301",
+    "date": "2026-04-02",
+    "operator": "Martin Rojas",
+    "wireType": "302/038",
+    "coilsProduced": 756,
+    "boxesUsed": 126,
+    "zipTiesUsed": 3024,
+    "palletsCreated": 2
+  },
+  {
+    "id": "run_1775090410198",
+    "palletId": "P1010",
+    "date": "2026-04-02",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": 385,
+    "boxesUsed": 64.16666666666667,
+    "zipTiesUsed": 1540,
+    "palletsCreated": 1.0185185185185186
+  },
+  {
+    "id": "run_1775178682043",
+    "palletId": "P1045",
+    "date": "2026-04-03",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": 375,
+    "boxesUsed": 62.5,
+    "zipTiesUsed": 1500,
+    "palletsCreated": 0.9920634920634921
+  },
+  {
+    "id": "run_1775178715541",
+    "palletId": "P1045",
+    "date": "2026-04-03",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": 375,
+    "boxesUsed": 62.5,
+    "zipTiesUsed": 1500,
+    "palletsCreated": 0.9920634920634921
+  },
+  {
+    "id": "run_1775178751333",
+    "date": "2026-04-03",
+    "boxesUsed": null,
+    "zipTiesUsed": null,
+    "palletsCreated": null
+  },
+  {
+    "id": "run_1775178963823",
+    "date": "2026-04-03",
+    "boxesUsed": null,
+    "zipTiesUsed": null,
+    "palletsCreated": null
+  },
+  {
+    "id": "run_1775182457045",
+    "palletId": "P1035",
+    "date": "2026-04-03",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": -456,
+    "boxesUsed": -76,
+    "zipTiesUsed": -1824,
+    "palletsCreated": -1.2063492063492063
+  },
+  {
+    "id": "run_1775182811847",
+    "palletId": "P1035",
+    "date": "2026-04-03",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": "456",
+    "boxesUsed": 76,
+    "zipTiesUsed": 1824,
+    "palletsCreated": 1.2063492063492063
+  },
+  {
+    "id": "run_1775183000679",
+    "palletId": "P1035",
+    "date": "2026-04-03",
+    "operator": "Martin",
+    "wireType": "302/045",
+    "coilsProduced": "12",
+    "boxesUsed": 2,
+    "zipTiesUsed": 48,
+    "palletsCreated": 0.031746031746031744
+  },
+  {
+    "id": "run_1775521677795",
+    "palletId": "P1095",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "430/045",
+    "coilsProduced": 620,
+    "boxesUsed": 103.33333333333333,
+    "zipTiesUsed": 2480,
+    "palletsCreated": 1.6402116402116402
+  },
+  {
+    "id": "run_1775522321223",
+    "palletId": "P1295",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "430/040",
+    "coilsProduced": 620,
+    "boxesUsed": 103.33333333333333,
+    "zipTiesUsed": 2480,
+    "palletsCreated": 1.6402116402116402
+  },
+  {
+    "id": "run_1775522623349",
+    "palletId": "P1295",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "430/045",
+    "coilsProduced": -12,
+    "boxesUsed": -2,
+    "zipTiesUsed": -48,
+    "palletsCreated": -0.031746031746031744
+  },
+  {
+    "id": "run_1775522657817",
+    "palletId": "P1295",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "430/045",
+    "coilsProduced": "qwe",
+    "boxesUsed": null,
+    "zipTiesUsed": null,
+    "palletsCreated": null
+  },
+  {
+    "id": "run_1775604335955",
+    "palletId": "P1295",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "",
+    "boxesUsed": null,
+    "zipTiesUsed": null,
+    "palletsCreated": null
+  },
+  {
+    "id": "run_1775604362087",
+    "palletId": "P1295",
+    "date": "2026-04-07",
+    "operator": "Martin",
+    "wireType": "",
+    "boxesUsed": null,
+    "zipTiesUsed": null,
+    "palletsCreated": null
+  },
+  {
+    "id": "run_1775698164676",
+    "palletId": "P1295",
+    "date": "2026-04-09",
+    "operator": "Martin",
+    "wireType": "302/038",
+    "coilsProduced": 378,
+    "boxesUsed": 63,
+    "zipTiesUsed": 1512,
+    "palletsCreated": 1
+  },
+  {
+    "id": "run_1776734992063",
+    "palletId": "P2102",
+    "date": "2026-04-21",
+    "operator": "Rojas",
+    "wireType": "430/045",
+    "coilsProduced": 780,
+    "boxesUsed": 130,
+    "zipTiesUsed": 3120,
+    "palletsCreated": 2.0634920634920637
+  }
+]

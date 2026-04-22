@@ -11,8 +11,8 @@ const loadProduction = () => {
    }
 };
 
-const saveProductionRun = (productionRun) => {
-   const dataJSON = JSON.stringify(productionRun);
+const saveProductionRun = (data) => {
+   const dataJSON = JSON.stringify(data, null, 2);
    fs.writeFileSync(`src/data/production.json`, dataJSON);
 };
 

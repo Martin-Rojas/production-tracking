@@ -35,7 +35,7 @@ export const createProductionRun = (req, res) => {
       };
 
       // Push and save productionRun
-      let production = loadProduction();
+      const production = loadProduction();
       production.push(productionRun);
       saveProductionRun(production);
 
@@ -47,7 +47,7 @@ export const createProductionRun = (req, res) => {
 
 export const getProduction = (req, res) => {
    try {
-      let production = loadProduction();
+      const production = loadProduction();
       res.status(200).json({ data: production });
    } catch {
       return res.status(500).json({ error: "Server error" });
@@ -56,7 +56,7 @@ export const getProduction = (req, res) => {
 
 export const getProductionRun = (req, res) => {
    try {
-      let production = loadProduction();
+      const production = loadProduction();
       const productionRunId = req.params.id;
 
       const requestProductionRun = production.find(
@@ -127,14 +127,14 @@ export const updateProductionRun = (req, res) => {
          operator: newOperator,
          wireType: newWireType,
          coilsProduced: newCoilsProduced,
-         palletId: newPalletID,
+         palletId: newPalletId,
       } = req.body;
 
       // Update Object
       productionRunFound.operator = newOperator;
       productionRunFound.wireType = newWireType;
       productionRunFound.coilsProduced = newCoilsProduced;
-      productionRunFound.palletId = newPalletID;
+      productionRunFound.palletId = newPalletId;
 
       // Recalculate business values  calculations
       const { boxesUsed, zipTiesUsed, palletsCreated } =

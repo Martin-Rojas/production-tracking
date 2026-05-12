@@ -1,8 +1,12 @@
 import express from "express";
 import productionRoutes from "./routes/productionRoutes.js";
+import { connectDB, disconnectDB } from "./config/db.js";
 
 const app = express();
 const PORT = 3000;
+
+// Connect to DB
+await connectDB();
 
 // middleware to read JSON body
 app.use(express.json());
@@ -14,3 +18,5 @@ app.use("/production", productionRoutes);
 app.listen(PORT, () => {
    console.log(`Server running on port ${PORT}`);
 });
+
+await disconnectDB();

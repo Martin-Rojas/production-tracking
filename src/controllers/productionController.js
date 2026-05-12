@@ -49,7 +49,7 @@ export const getProduction = (req, res) => {
    try {
       const production = loadProduction();
       res.status(200).json({ data: production });
-   } catch {
+   } catch (error) {
       return res.status(500).json({ error: "Server error" });
    }
 };

@@ -18,5 +18,3 @@ app.use("/production", productionRoutes);
 app.listen(PORT, () => {
    console.log(`Server running on port ${PORT}`);
 });
-
-await disconnectDB();

@@ -208,5 +208,16 @@
     "boxesUsed": 130,
     "zipTiesUsed": 3120,
     "palletsCreated": 2.0634920634920637
+  },
+  {
+    "id": "run_1787015074382",
+    "palletId": "P817",
+    "date": "2026-08-18",
+    "operator": "Sebastian",
+    "wireType": "430/045",
+    "coilsProduced": 800,
+    "boxesUsed": 133.33333333333334,
+    "zipTiesUsed": 3200,
+    "palletsCreated": 2.1164021164021167
   }
 ]

@@ -41,5 +41,5 @@ const productionRunSchema = new Schema(
 );
 
 // Create the model
-const Produciton = mongoose.model("Production", productionRunSchema);
-export default Produciton;
+const Production = mongoose.model("Production", productionRunSchema);
+export default Production;

@@ -41,7 +41,8 @@ export const createProductionRun = (req, res) => {
 
       res.status(201).json({ data: productionRun });
    } catch (error) {
-      return res.status(500).json({ error: "Server error" });
+      // return res.status(500).json({ error: "Server error" });
+      console.log(error);
    }
 };
 

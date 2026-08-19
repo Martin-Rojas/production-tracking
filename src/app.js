@@ -1,7 +1,7 @@
 import express from "express";
 import productionRoutes from "./routes/productionRoutes.js";
 import { connectDB, disconnectDB } from "./config/db.js";
-import { Production } from "./models";
+import Production from "./models/ProductionRun.js";
 
 const app = express();
 const PORT = 3000;

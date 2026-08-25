@@ -1,22 +1,27 @@
 // import the model
 import Production from "../models/ProductionRun.js";
+import { validateData } from "../utils/validateProduction.js";
 import { calculateProduction } from "../utils/calculateProduction.js";
 
 // create a new document
 export const createProductionMongoDB = async (req, res) => {
    try {
+      // validate data
+      const error = validateData(req.body);
+
+      if (error) {
+         return res.status(400).json({ error });
+      }
       const { operator, wireType, coilsProduced, palletId } = req.body;
 
       // business calculations
       const { boxesUsed, zipTiesUsed, palletsCreated } =
          calculateProduction(coilsProduced);
 
-      // generate  id
-      const id = `run_${Date.now()}`;
-
       // create date
       const date = new Date();
 
+      // create new obj production Run
       const productionRunData = {
          palletId,
          date,
@@ -27,7 +32,8 @@ export const createProductionMongoDB = async (req, res) => {
          zipTiesUsed,
          palletsCreated,
       };
-      const newProductionRun = new Production(productionRunData);
+
+      const newProductionRun = new Production(productionRunData); // create instance
       await newProductionRun.save(); // Save into DB
 
       res.status(201).json({

@@ -6,17 +6,21 @@ import {
    deleteProductionRun,
    updateProductionRun,
 } from "../controllers/productionController.js";
-import { createProductionMongoDB } from "../controllers/productionMongoController.js";
+import {
+   createProductionMongoDB,
+   getProductionMongoDB,
+} from "../controllers/productionMongoController.js";
 
 const router = express.Router();
+
+// Routes to migrate to MongoDB
+router.post("/mongoDB", createProductionMongoDB);
+router.get("/mongoDB", getProductionMongoDB);
 
 router.post("/", createProductionRun);
 router.get("/", getProduction);
 router.get("/:id", getProductionRun);
 router.delete("/:id", deleteProductionRun);
 router.put("/:id", updateProductionRun);
-
-// Routes to migrate to MongoDB
-router.post("/mongoDB", createProductionMongoDB);
 
 export default router;

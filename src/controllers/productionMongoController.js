@@ -49,3 +49,7 @@ export const createProductionMongoDB = async (req, res) => {
       });
    }
 };
+
+export const getProductionMongoDB = async (req, res) => {
+   res.send("End point works");
+};

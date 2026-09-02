@@ -61,3 +61,13 @@ export const getProductionMongoDB = async (req, res) => {
          .json({ error: "Failed to retrieve production runs" });
    }
 };
+
+export const getProductionMongoDBRun = async (req, res) => {
+   try {
+      res.status(200).json({ data: "End point works" });
+   } catch (error) {
+      return res
+         .status(500)
+         .json({ error: "Failed to retrieve production run" });
+   }
+};

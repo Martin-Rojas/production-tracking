@@ -51,5 +51,13 @@ export const createProductionMongoDB = async (req, res) => {
 };
 
 export const getProductionMongoDB = async (req, res) => {
-   res.send("End point works");
+   try {
+      const productions = await Production.find({});
+
+      res.status(200).json({ data: productions });
+   } catch (error) {
+      return res
+         .status(500)
+         .json({ error: "Failed to retrieve production runs" });
+   }
 };

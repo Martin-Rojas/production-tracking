@@ -64,7 +64,9 @@ export const getProductionMongoDB = async (req, res) => {
 
 export const getProductionMongoDBRun = async (req, res) => {
    try {
-      res.status(200).json({ data: "End point works" });
+      // Get the production run by id
+      const productionRun = await Production.findById(req.params.id);
+      res.status(200).json({ data: productionRun });
    } catch (error) {
       return res
          .status(500)

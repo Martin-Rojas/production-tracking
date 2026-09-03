@@ -66,6 +66,13 @@ export const getProductionMongoDBRun = async (req, res) => {
    try {
       // Get the production run by id
       const productionRun = await Production.findById(req.params.id);
+
+      // Document not found
+      if (!productionRun) {
+         return res.status(404).json({
+            error: "Production run not found",
+         });
+      }
       res.status(200).json({ data: productionRun });
    } catch (error) {
       return res

@@ -10,6 +10,7 @@ import {
    createProductionMongoDB,
    getProductionMongoDB,
    getProductionMongoDBRun,
+   updateProductionRunMongoDB,
 } from "../controllers/productionMongoController.js";
 
 const router = express.Router();
@@ -18,6 +19,7 @@ const router = express.Router();
 router.post("/mongoDB", createProductionMongoDB);
 router.get("/mongoDB", getProductionMongoDB);
 router.get("/mongoDB/:id", getProductionMongoDBRun);
+router.put("/mongoDB/:id", updateProductionRunMongoDB);
 
 router.post("/", createProductionRun);
 router.get("/", getProduction);

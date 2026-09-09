@@ -83,7 +83,10 @@ export const getProductionMongoDBRun = async (req, res) => {
 
 export const updateProductionRunMongoDB = async (req, res) => {
    try {
-      res.status(200).json({ data: "End point works" });
+      // Get the production run by id
+      const productionRunFound = await Production.findById(req.params.id);
+
+      res.status(200).json({ data: productionRunFound });
    } catch (error) {
       return res.status(500).json({ error: "Failed to Update production run" });
    }

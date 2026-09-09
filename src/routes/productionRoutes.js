@@ -19,7 +19,7 @@ const router = express.Router();
 router.post("/mongoDB", createProductionMongoDB);
 router.get("/mongoDB", getProductionMongoDB);
 router.get("/mongoDB/:id", getProductionMongoDBRun);
-router.put("/mongoDB/:id", updateProductionRunMongoDB);
+router.patch("/mongoDB/:id", updateProductionRunMongoDB);
 
 router.post("/", createProductionRun);
 router.get("/", getProduction);

@@ -83,9 +83,53 @@ export const getProductionMongoDBRun = async (req, res) => {
 
 export const updateProductionRunMongoDB = async (req, res) => {
    try {
+      // Check for invalid fields
+      const validFields = ["operator", "wireType", "coilsProduced", "palletId"];
+
+      const requestedFields = Object.keys(req.body);
+
+      const invalidFields = requestedFields.filter(
+         (field) => !validFields.includes(field),
+      );
+
+      if (invalidFields.length > 0) {
+         return res.status(400).json({
+            error: "Invalid field",
+            fields: invalidFields,
+         });
+      }
       // Get the production run by id
       const productionRunFound = await Production.findById(req.params.id);
 
+      if (!productionRunFound) {
+         return res.status(404).json({ error: "Production Run Not Found" });
+      }
+      // Check for any invalid field
+
+      if (req.body.operator !== undefined) {
+         productionRunFound.operator = req.body.operator;
+      }
+      if (req.body.wireType !== undefined) {
+         productionRunFound.wireType = req.body.wireType;
+      }
+      if (req.body.coilsProduced !== undefined) {
+         if (productionRunFound.coilsProduced !== req.body.coilsProduced) {
+            productionRunFound.coilsProduced = req.body.coilsProduced;
+            // business calculations
+            const { boxesUsed, zipTiesUsed, palletsCreated } =
+               calculateProduction(productionRunFound.coilsProduced);
+
+            productionRunFound.boxesUsed = boxesUsed;
+            productionRunFound.zipTiesUsed = zipTiesUsed;
+            productionRunFound.palletsCreated = palletsCreated;
+         }
+      }
+      if (req.body.palletId !== undefined) {
+         productionRunFound.palletId = req.body.palletId;
+      }
+
+      // Save updated produciton run
+      await productionRunFound.save();
       res.status(200).json({ data: productionRunFound });
    } catch (error) {
       return res.status(500).json({ error: "Failed to Update production run" });

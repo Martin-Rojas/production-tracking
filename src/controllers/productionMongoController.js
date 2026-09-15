@@ -177,3 +177,4 @@ export const updateProductionRunMongoDB = async (req, res) => {
       return res.status(500).json({ error: "Failed to Update production run" });
    }
 };
+export const deleteProductionRunMongoDB = async (req, res) => {};

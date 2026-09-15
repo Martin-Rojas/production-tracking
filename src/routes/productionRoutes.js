@@ -11,6 +11,7 @@ import {
    getProductionMongoDB,
    getProductionMongoDBRun,
    updateProductionRunMongoDB,
+   deleteProductionRunMongoDB,
 } from "../controllers/productionMongoController.js";
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router.post("/mongoDB", createProductionMongoDB);
 router.get("/mongoDB", getProductionMongoDB);
 router.get("/mongoDB/:id", getProductionMongoDBRun);
 router.patch("/mongoDB/:id", updateProductionRunMongoDB);
+router.delete("/mongoDB/:id", deleteProductionRunMongoDB);
 
 router.post("/", createProductionRun);
 router.get("/", getProduction);

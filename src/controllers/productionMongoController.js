@@ -177,4 +177,22 @@ export const updateProductionRunMongoDB = async (req, res) => {
       return res.status(500).json({ error: "Failed to Update production run" });
    }
 };
-export const deleteProductionRunMongoDB = async (req, res) => {};
+export const deleteProductionRunMongoDB = async (req, res) => {
+   try {
+      // Get the production run by id
+      const productionRunFound = await Production.findByIdAndDelete(
+         req.params.id,
+      );
+
+      if (!productionRunFound) {
+         return res.status(404).json({ error: "Production Run Not Found" });
+      }
+
+      res.status(200).json({
+         data: productionRunFound,
+         message: "Document was deleted successfully",
+      });
+   } catch (error) {
+      return res.status(500).json({ error: "Failed to delete production run" });
+   }
+};

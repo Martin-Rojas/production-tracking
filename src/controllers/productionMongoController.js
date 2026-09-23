@@ -42,7 +42,7 @@ export const createProductionMongoDB = async (req, res) => {
          productionRun: newProductionRun,
       });
    } catch (error) {
-      console.error("Error creating production run:", error);
+      // console.error("Error creating production run:", error);
 
       res.status(500).json({
          message: "Failed to create production run",
@@ -76,6 +76,11 @@ export const getProductionMongoDBRun = async (req, res) => {
       }
       res.status(200).json({ data: productionRun });
    } catch (error) {
+      if (error.name === "CastError") {
+         return res.status(400).json({
+            error: "Invalid production run ID",
+         });
+      }
       return res
          .status(500)
          .json({ error: "Failed to retrieve production run" });
@@ -174,6 +179,11 @@ export const updateProductionRunMongoDB = async (req, res) => {
       await productionRunFound.save();
       res.status(200).json({ data: productionRunFound });
    } catch (error) {
+      if (error.name === "CastError") {
+         return res.status(400).json({
+            error: "Invalid production run ID",
+         });
+      }
       return res.status(500).json({ error: "Failed to Update production run" });
    }
 };
@@ -193,6 +203,11 @@ export const deleteProductionRunMongoDB = async (req, res) => {
          message: "Document was deleted successfully",
       });
    } catch (error) {
+      if (error.name === "CastError") {
+         return res.status(400).json({
+            error: "Invalid production run ID",
+         });
+      }
       return res.status(500).json({ error: "Failed to delete production run" });
    }
 };

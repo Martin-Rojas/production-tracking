@@ -1,3 +1,5 @@
+import { VALID_WIRE_TYPES } from "./productionConstants.js";
+
 export const validateData = (data) => {
    // Validate Request Exists
    if (!data || Object.keys(data).length === 0) {
@@ -10,8 +12,7 @@ export const validateData = (data) => {
       return "All fields must be required";
    }
    // Validate Wire Type
-   const validWireTypes = ["316/045", "302/038", "302/045", "430/045"];
-   if (!validWireTypes.includes(wireType)) {
+   if (!VALID_WIRE_TYPES.includes(wireType)) {
       return "Invalid wire type";
    }
 

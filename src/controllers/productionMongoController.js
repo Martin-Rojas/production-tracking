@@ -3,6 +3,7 @@ import Production from "../models/ProductionRun.js";
 import { validateData } from "../utils/validateProduction.js";
 import { calculateProduction } from "../utils/calculateProduction.js";
 import { error } from "node:console";
+import { VALID_WIRE_TYPES } from "../utils/productionConstants.js";
 
 // create a new document
 export const createProductionMongoDB = async (req, res) => {
@@ -11,7 +12,7 @@ export const createProductionMongoDB = async (req, res) => {
       const error = validateData(req.body);
 
       if (error) {
-         return res.status(400).json({ error });
+         return res.status(400).json({ error: error });
       }
       const { operator, wireType, coilsProduced, palletId } = req.body;
 
@@ -132,8 +133,8 @@ export const updateProductionRunMongoDB = async (req, res) => {
       }
       if (req.body.wireType !== undefined) {
          // Validate Wire Type
-         const validWireTypes = ["316/045", "302/038", "302/045", "430/045"];
-         if (!validWireTypes.includes(req.body.wireType)) {
+         //const validWireTypes = ["316/045", "302/038", "302/045", "430/045"];
+         if (!VALID_WIRE_TYPES.includes(req.body.wireType)) {
             return res.status(400).json({
                error: "Invalid wire type",
             });

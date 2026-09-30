@@ -4,6 +4,7 @@ import { validateData } from "../utils/validateProduction.js";
 import { calculateProduction } from "../utils/calculateProduction.js";
 import { error } from "node:console";
 import { VALID_WIRE_TYPES } from "../utils/productionConstants.js";
+import { validateProductionUpdate } from "../utils/validateProduction.js";
 
 // create a new document
 export const createProductionMongoDB = async (req, res) => {
@@ -43,8 +44,6 @@ export const createProductionMongoDB = async (req, res) => {
          productionRun: newProductionRun,
       });
    } catch (error) {
-      // console.error("Error creating production run:", error);
-
       res.status(500).json({
          message: "Failed to create production run",
          error: error.message,
@@ -90,6 +89,12 @@ export const getProductionMongoDBRun = async (req, res) => {
 
 export const updateProductionRunMongoDB = async (req, res) => {
    try {
+      const error = validateProductionUpdate(req.body);
+
+      if (error) {
+         return res.status(400).json(error);
+      }
+      // Body is not empty
       if (Object.keys(req.body).length === 0) {
          return res.status(400).json({
             error: "Need to provide fields.",
@@ -131,9 +136,9 @@ export const updateProductionRunMongoDB = async (req, res) => {
          }
          productionRunFound.operator = req.body.operator;
       }
+
       if (req.body.wireType !== undefined) {
-         // Validate Wire Type
-         //const validWireTypes = ["316/045", "302/038", "302/045", "430/045"];
+         // Validate Wire Types
          if (!VALID_WIRE_TYPES.includes(req.body.wireType)) {
             return res.status(400).json({
                error: "Invalid wire type",
@@ -141,6 +146,7 @@ export const updateProductionRunMongoDB = async (req, res) => {
          }
          productionRunFound.wireType = req.body.wireType;
       }
+
       if (req.body.coilsProduced !== undefined) {
          // Validate coilsProduced
          const coils = Number(req.body.coilsProduced);

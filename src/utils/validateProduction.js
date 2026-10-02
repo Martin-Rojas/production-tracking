@@ -29,7 +29,7 @@ export const validateData = (data) => {
 export const validateProductionUpdate = (data) => {
    // Body is not empty
    if (Object.keys(data).length === 0) {
-      return { error: "Need to provide fields34." };
+      return { error: "Need to provide fields." };
    }
 
    // Check for invalid fields

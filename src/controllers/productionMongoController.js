@@ -94,27 +94,7 @@ export const updateProductionRunMongoDB = async (req, res) => {
       if (error) {
          return res.status(400).json(error);
       }
-      // Body is not empty
-      if (Object.keys(req.body).length === 0) {
-         return res.status(400).json({
-            error: "Need to provide fields.",
-         });
-      }
-      // Check for invalid fields
-      const validFields = ["operator", "wireType", "coilsProduced", "palletId"];
 
-      const requestedFields = Object.keys(req.body);
-
-      const invalidFields = requestedFields.filter(
-         (field) => !validFields.includes(field),
-      );
-
-      if (invalidFields.length > 0) {
-         return res.status(400).json({
-            error: "Invalid field",
-            fields: invalidFields,
-         });
-      }
       // Get the production run by id
       const productionRunFound = await Production.findById(req.params.id);
 
@@ -123,39 +103,17 @@ export const updateProductionRunMongoDB = async (req, res) => {
       }
 
       if (req.body.operator !== undefined) {
-         // Validate operator
-         if (req.body.operator === "") {
-            return res.status(400).json({
-               error: "Operator can not be blank",
-            });
-         }
-         if (typeof req.body.operator !== "string") {
-            return res.status(400).json({
-               error: "Operator must be a string",
-            });
-         }
          productionRunFound.operator = req.body.operator;
       }
-
       if (req.body.wireType !== undefined) {
-         // Validate Wire Types
-         if (!VALID_WIRE_TYPES.includes(req.body.wireType)) {
-            return res.status(400).json({
-               error: "Invalid wire type",
-            });
-         }
          productionRunFound.wireType = req.body.wireType;
+      }
+      if (req.body.palletId !== undefined) {
+         productionRunFound.palletId = req.body.palletId;
       }
 
       if (req.body.coilsProduced !== undefined) {
-         // Validate coilsProduced
-         const coils = Number(req.body.coilsProduced);
-         if (!Number.isFinite(coils) || coils < 0) {
-            return res.status(400).json({
-               error: "Invalid coil count",
-            });
-         }
-
+         const coils = req.body.coilsProduced;
          if (productionRunFound.coilsProduced !== coils) {
             productionRunFound.coilsProduced = coils;
             // business calculations
@@ -166,20 +124,6 @@ export const updateProductionRunMongoDB = async (req, res) => {
             productionRunFound.zipTiesUsed = zipTiesUsed;
             productionRunFound.palletsCreated = palletsCreated;
          }
-      }
-      if (req.body.palletId !== undefined) {
-         // Validate palletId
-         if (req.body.palletId === "") {
-            return res.status(400).json({
-               error: "PalletId can not be blank",
-            });
-         }
-         if (typeof req.body.palletId !== "string") {
-            return res.status(400).json({
-               error: "PalletId must be a string",
-            });
-         }
-         productionRunFound.palletId = req.body.palletId;
       }
 
       // Save updated produciton run
@@ -194,6 +138,7 @@ export const updateProductionRunMongoDB = async (req, res) => {
       return res.status(500).json({ error: "Failed to Update production run" });
    }
 };
+
 export const deleteProductionRunMongoDB = async (req, res) => {
    try {
       // Get the production run by id

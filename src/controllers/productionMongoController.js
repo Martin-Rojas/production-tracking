@@ -40,8 +40,7 @@ export const createProductionMongoDB = async (req, res) => {
       await newProductionRun.save(); // Save into DB
 
       res.status(201).json({
-         message: "Production run created successfully",
-         productionRun: newProductionRun,
+         data: newProductionRun,
       });
    } catch (error) {
       res.status(500).json({
@@ -152,7 +151,6 @@ export const deleteProductionRunMongoDB = async (req, res) => {
 
       res.status(200).json({
          data: productionRunFound,
-         message: "Document was deleted successfully",
       });
    } catch (error) {
       if (error.name === "CastError") {

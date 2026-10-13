@@ -5,6 +5,7 @@ import { calculateProduction } from "../utils/calculateProduction.js";
 import { error } from "node:console";
 import { VALID_WIRE_TYPES } from "../utils/productionConstants.js";
 import { validateProductionUpdate } from "../utils/validateProduction.js";
+import { handlingError } from "../middleware/errorHandler.js";
 
 // create a new document
 export const createProductionMongoDB = async (req, res) => {
@@ -62,7 +63,7 @@ export const getProductionMongoDB = async (req, res) => {
    }
 };
 
-export const getProductionMongoDBRun = async (req, res) => {
+export const getProductionMongoDBRun = async (req, res, next) => {
    try {
       // Get the production run by id
       const productionRun = await Production.findById(req.params.id);
@@ -75,18 +76,11 @@ export const getProductionMongoDBRun = async (req, res) => {
       }
       res.status(200).json({ data: productionRun });
    } catch (error) {
-      if (error.name === "CastError") {
-         return res.status(400).json({
-            error: "Invalid production run ID",
-         });
-      }
-      return res
-         .status(500)
-         .json({ error: "Failed to retrieve production run" });
+      return next(error);
    }
 };
 
-export const updateProductionRunMongoDB = async (req, res) => {
+export const updateProductionRunMongoDB = async (req, res, next) => {
    try {
       const error = validateProductionUpdate(req.body);
 
@@ -129,16 +123,11 @@ export const updateProductionRunMongoDB = async (req, res) => {
       await productionRunFound.save();
       res.status(200).json({ data: productionRunFound });
    } catch (error) {
-      if (error.name === "CastError") {
-         return res.status(400).json({
-            error: "Invalid production run ID",
-         });
-      }
-      return res.status(500).json({ error: "Failed to Update production run" });
+      return next(error);
    }
 };
 
-export const deleteProductionRunMongoDB = async (req, res) => {
+export const deleteProductionRunMongoDB = async (req, res, next) => {
    try {
       // Get the production run by id
       const productionRunFound = await Production.findByIdAndDelete(
@@ -153,11 +142,6 @@ export const deleteProductionRunMongoDB = async (req, res) => {
          data: productionRunFound,
       });
    } catch (error) {
-      if (error.name === "CastError") {
-         return res.status(400).json({
-            error: "Invalid production run ID",
-         });
-      }
-      return res.status(500).json({ error: "Failed to delete production run" });
+      return next(error);
    }
 };

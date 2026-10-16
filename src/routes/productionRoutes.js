@@ -23,10 +23,4 @@ router.get("/mongoDB/:id", getProductionMongoDBRun);
 router.patch("/mongoDB/:id", updateProductionRunMongoDB);
 router.delete("/mongoDB/:id", deleteProductionRunMongoDB);
 
-router.post("/", createProductionRun);
-router.get("/", getProduction);
-router.get("/:id", getProductionRun);
-router.delete("/:id", deleteProductionRun);
-router.put("/:id", updateProductionRun);
-
 export default router;
